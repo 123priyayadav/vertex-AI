@@ -17,7 +17,7 @@ function ChatWindow() {
   const [loading, setLoading] = useState(false);
 
   const getReply = async () => {
-    if (!prompt.trim()) return; // empty input avoid
+    if (!prompt.trim()) return;
 
     setLoading(true);
     console.log("message", prompt, "threadId", currThreadId);
@@ -35,20 +35,20 @@ function ChatWindow() {
       });
 
       const res = await response.json();
-      console.log("✅ server response:", res);
+      console.log(" server response:", res);
       setReply(res.reply);
 
-      // ✅ add user & GPT messages to chat history
+      
       setPrevChats(prev => [
         ...prev,
         { role: "user", content: prompt },
         { role: "gpt", content: res.reply }
       ]);
 
-      // ✅ mark that chat is no longer new
+     
       setNewChat(false);
 
-      // ✅ clear input
+      
       setPrompt("");
     } catch (err) {
       console.error("❌ error:", err);
@@ -56,7 +56,7 @@ function ChatWindow() {
     setLoading(false);
   };
 
-  // ✅ Yeh function alag se close hoga
+ 
   const handleProfileClick = () => {
     setIsOpen(!isOpen);
   };

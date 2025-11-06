@@ -8,7 +8,7 @@ import getGeminiAPIResponse from "./UTILS/openai.js";
 const app = express();
 const PORT =process.env.PORT || 8080;
 
-// ✅ Middleware
+// ✅ Middlewareuu
 app.use(cors({
   origin: "http://localhost:5173", 
   methods: ["GET", "POST", "PUT", "DELETE"],

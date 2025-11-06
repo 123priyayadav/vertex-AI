@@ -12,24 +12,24 @@ const getGeminiAPIResponse = async (message) => {
   };
 
   try {
+    // ✅ Use correct model endpoint (backticks required for template literal)
     const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
       options
     );
 
     const data = await response.json();
     console.log("🔎 Gemini raw response:", JSON.stringify(data, null, 2));
 
-    // ✅ Gemini reply parse fix
-    if (
-      data?.candidates &&
-      data.candidates[0]?.content?.parts &&
-      data.candidates[0].content.parts[0]?.text
-    ) {
-      return data.candidates[0].content.parts[0].text;
-    }
+    // ✅ Parse Gemini's response safely
+    const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
 
-    return "⚠️ Gemini API gave no text output";
+    if (text) {
+      return text;
+    } else {
+      console.warn("⚠️ Gemini API gave no text output");
+      return "⚠️ Gemini API gave no text output";
+    }
   } catch (err) {
     console.error("❌ Gemini API Error:", err.message);
     return "❌ Error calling Gemini API";
