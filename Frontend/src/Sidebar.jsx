@@ -21,7 +21,7 @@ function Sidebar() {
 
   const getAllThreads = async () => {
     try {
-      const response = await fetch("http://localhost:8080/api/thread");
+         const response = await fetch("https://vertex-ai-backend1.onrender.com/api/threads");
       const res = await response.json();
       const filteredThreads = res.map(thread => ({
         threadId: thread.threadId,
@@ -42,7 +42,7 @@ function Sidebar() {
     setCurrThreadId(newThreadId);
 
     try {
-      const response = await fetch(`http://localhost:8080/api/thread/${newThreadId}`);
+       const response = await fetch(`https://vertex-ai-backend1.onrender.com/api/thread/${newThreadId}`);
       const res = await response.json();
       console.log("single thread data", res);
       setPrevChats(res); // ✅ update context
@@ -55,7 +55,7 @@ function Sidebar() {
 
   const deleteThread = async (threadId) => {
     try {
-      const response = await fetch(`http://localhost:8080/api/thread/${threadId}`, {
+       const response = await fetch(`https://vertex-ai-backend1.onrender.com/api/thread/${threadId}`, {
         method: "DELETE",
       });
       const res = await response.json();
