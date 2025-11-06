@@ -23,7 +23,7 @@ function ChatWindow() {
     console.log("message", prompt, "threadId", currThreadId);
 
     try {
-      const response = await fetch("http://localhost:8080/api/chat", {
+       const response = await fetch("https://vertex-ai-backend1.onrender.com/api/chat", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
