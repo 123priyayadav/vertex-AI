@@ -10,10 +10,11 @@ const PORT =process.env.PORT || 8080;
 
 // ✅ Middlewareuu
 app.use(cors({
-  origin: "http://localhost:5173", 
+  origin: "*", // ✅ allow frontend from Render, localhost, etc.
   methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
+  allowedHeaders: ["Content-Type"]
 }));
+
 app.use(express.json());
 
 // ✅ Routes
